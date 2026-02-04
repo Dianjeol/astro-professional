@@ -1,5 +1,6 @@
 import type { ChartData, Planet, House, PlanetName, SignName, Coordinate, Aspect, Dignity } from '../../types/astrology';
-import { SwissEphemeris, HouseSystem } from '@swisseph/browser';
+import { SwissEphemeris } from '@swisseph/browser';
+import { HouseSystem, CalendarType } from '@swisseph/core';
 
 // Swiss Ephemeris Constants
 const SwePlanet = {
@@ -7,7 +8,6 @@ const SwePlanet = {
     Jupiter: 5, Saturn: 6, Uranus: 7, Neptune: 8, Pluto: 9
 };
 const LunarPoint = { MeanNode: 10, TrueNode: 11 };
-const OpsHouseSystem = { Placidus: 'P', WholeSign: 'W' };
 
 // Constants
 const SIGNS: SignName[] = [
@@ -42,6 +42,101 @@ const FALLS: Partial<Record<PlanetName, SignName>> = {
     Mars: 'Cancer', Jupiter: 'Capricorn', Saturn: 'Aries'
 };
 
+// Monkey-patch SwissEphemeris for browser compatibility
+if (typeof window !== 'undefined') {
+    const proto = SwissEphemeris.prototype as any;
+
+    proto.calculateHouses = function (julianDay: number, latitude: number, longitude: number, houseSystem: string = 'P') {
+        this._checkReady();
+        const m = this.module;
+        const cuspsPtr = m._malloc(13 * 8);
+        const ascmcPtr = m._malloc(10 * 8);
+        const hsysCode = houseSystem.charCodeAt(0);
+        m.ccall(
+            "swe_houses_wrap",
+            "number",
+            ["number", "number", "number", "number", "number", "number"],
+            [julianDay, latitude, longitude, hsysCode, cuspsPtr, ascmcPtr]
+        );
+        const cusps = [];
+        for (let i = 0; i < 13; i++) {
+            cusps[i] = m.getValue(cuspsPtr + i * 8, "double");
+        }
+        const ascmc = [];
+        for (let i = 0; i < 10; i++) {
+            ascmc[i] = m.getValue(ascmcPtr + i * 8, "double");
+        }
+        m._free(cuspsPtr);
+        m._free(ascmcPtr);
+        return {
+            cusps,
+            ascendant: ascmc[0],
+            mc: ascmc[1],
+            armc: ascmc[2],
+            vertex: ascmc[3],
+            equatorialAscendant: ascmc[4],
+            coAscendant1: ascmc[5],
+            coAscendant2: ascmc[6],
+            polarAscendant: ascmc[7],
+            houseSystem
+        };
+    };
+
+    proto.julianDay = function (year: number, month: number, day: number, hour: number = 0, calendarType: number = 1) {
+        this._checkReady();
+        return this.module._swe_julday_wrap(year, month, day, hour, calendarType);
+    };
+
+    proto.dateToJulianDay = function (date: Date, calendarType: number = 1) {
+        this._checkReady();
+        if (!(date instanceof Date)) throw new TypeError("dateToJulianDay expects a Date object");
+        const hours = date.getUTCHours() + date.getUTCMinutes() / 60 + date.getUTCSeconds() / 3600 + date.getUTCMilliseconds() / 3600000;
+        return this.julianDay(date.getUTCFullYear(), date.getUTCMonth() + 1, date.getUTCDate(), hours, calendarType);
+    };
+
+    proto.calculatePosition = function (julianDay: number, body: number, flags: number = 2) {
+        this._checkReady();
+        const m = this.module;
+        const resPtr = m._malloc(6 * 8);
+        const errPtr = m._malloc(256);
+        const ret = m.ccall(
+            "swe_calc_ut_wrap",
+            "number",
+            ["number", "number", "number", "number", "number"],
+            [julianDay, body, flags, resPtr, errPtr]
+        );
+
+        if (ret < 0) {
+            const error = m.UTF8ToString(errPtr);
+            m._free(resPtr);
+            m._free(errPtr);
+            throw new Error(`Swiss Ephemeris calculation error: ${error}`);
+        }
+
+        const results = [];
+        for (let i = 0; i < 6; i++) {
+            results[i] = m.getValue(resPtr + i * 8, "double");
+        }
+
+        m._free(resPtr);
+        m._free(errPtr);
+
+        return {
+            longitude: results[0],
+            latitude: results[1],
+            distance: results[2],
+            longitudeSpeed: results[3],
+            latitudeSpeed: results[4],
+            distanceSpeed: results[5]
+        };
+    };
+
+    proto.julianDayToDate = function (jd: number, calendarType: number = 1) {
+        this._checkReady();
+        return this.module._swe_revjul_wrap(jd, calendarType);
+    };
+}
+
 export class AstrologyEngine {
     private static instance: AstrologyEngine;
     private swe: SwissEphemeris;
@@ -65,8 +160,7 @@ export class AstrologyEngine {
         await this.readyPromise;
 
         // Calculate Julian Day using the library's method
-        const jd = this.swe.dateToJulianDay(date);
-
+        const jd = this.swe.dateToJulianDay(date, CalendarType.Gregorian);
         // Calculate Planets
         const planets: Planet[] = [];
         const bodies = [
