@@ -79,6 +79,9 @@ export const HellenisticPanel: React.FC<HellenisticPanelProps> = ({ data }) => {
                 <span className={`sect-badge ${isDayChart ? 'day' : 'night'}`}>
                     {isDayChart ? '☀️ Day Chart' : '🌙 Night Chart'}
                 </span>
+                <span className="house-system-label">
+                    Using <strong>Whole Sign</strong> Houses
+                </span>
             </div>
 
             {/* Chart Ruler */}

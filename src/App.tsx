@@ -184,6 +184,12 @@ function App() {
                 </div>
               )}
 
+              <div className="chart-meta-details">
+                <span className="house-system-tag">
+                  Basis: {activeTab === 'hellenistic' ? 'Whole Sign Houses' : 'Placidus Houses'}
+                </span>
+              </div>
+
               <motion.div
                 className="chart-container"
                 initial={{ opacity: 0, scale: 0.9, rotate: -10 }}

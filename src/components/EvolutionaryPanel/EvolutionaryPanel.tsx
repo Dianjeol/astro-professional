@@ -44,6 +44,13 @@ export const EvolutionaryPanel: React.FC<EvolutionaryPanelProps> = ({ data }) =>
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
         >
+            {/* Perspective Info */}
+            <div className="perspective-info">
+                <span className="house-system-label">
+                    Using <strong>Placidus</strong> Houses
+                </span>
+            </div>
+
             {/* Lunar Nodes Section */}
             <h3>Lunar Nodes</h3>
             <div className="nodes-section">
