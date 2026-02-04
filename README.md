@@ -1,73 +1,72 @@
-# React + TypeScript + Vite
+ASTRO-PROFESSIONAL ASTROLOGICAL ENGINE
+=====================================
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a high-precision astrology web application designed for both
+traditional Hellenistic and modern Evolutionary astrological perspectives.
 
-Currently, two official plugins are available:
+WHAT IS THIS?
+-------------
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Astro-Professional is a React-based application leveraging the Swiss Ephemeris
+via WebAssembly for sub-arcsecond accuracy in planetary and house
+calculations. It provides a dual-interface for different astrological
+methodologies:
 
-## React Compiler
+ - Hellenistic: Whole-sign houses, traditional 7 planets, essential dignities,
+   sect status, and Arabic Parts (Fortune and Spirit).
+ - Evolutionary: Placidus houses, inclusion of outer planets, and Pluto
+   polarity analysis.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The system includes a custom SVG rendering engine for the chart wheel,
+complete with interactive tooltips and dynamic aspect line animations.
 
-## Expanding the ESLint configuration
+PREREQUISITES
+-------------
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+To build the environment, you will need:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+ - Node.js (v18 or higher recommended)
+ - npm or yarn
+ - A modern browser with WebAssembly (WASM) support
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+BUILDING AND RUNNING
+--------------------
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+To initialize the development environment:
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+    npm install
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+To run the development server:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+    npm run dev
+
+To execute the test suite (62+ tests covering engine and UI):
+
+    npm test
+
+To create a production-optimized build:
+
+    npm run build
+
+TECHNICAL SPECIFICATIONS
+------------------------
+
+ - Framework: React 19
+ - Precision: Swiss Ephemeris (WASM)
+ - Animation: Framer Motion
+ - Styling: Custom CSS with Cosmic Dark Theme
+ - Geocoding: Open-Meteo Integration
+
+LEGAL
+-----
+
+The software is released under the MIT License. See the LICENSE file for
+the full text.
+
+The Swiss Ephemeris library is subject to its own licensing (AGPL-3.0).
+
+CONTRIBUTIONS
+-------------
+
+Standard pull-request workflow applies. Bug reports and feature suggestions
+are welcome via GitHub issues.
