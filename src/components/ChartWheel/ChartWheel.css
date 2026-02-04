@@ -1,0 +1,123 @@
+.chart-wheel {
+    margin: 0 auto;
+    display: block;
+    max-width: 100%;
+}
+
+.wheel-bg {
+    fill: #1a1a1a;
+    stroke: rgba(255, 255, 255, 0.1);
+    stroke-width: 1;
+}
+
+
+
+.sign-sector {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.2);
+    stroke-width: 1;
+    transition: fill 0.3s;
+}
+
+.sign-sector:hover {
+    fill: rgba(100, 108, 255, 0.1);
+}
+
+.sign-label {
+    fill: rgba(255, 255, 255, 0.8);
+    font-size: 10px;
+    font-family: inherit;
+    font-weight: 500;
+    pointer-events: none;
+}
+
+.house-line {
+    stroke: rgba(255, 255, 255, 0.15);
+    stroke-width: 1;
+    stroke-dasharray: 4 2;
+}
+
+.wheel-center {
+    fill: #242424;
+    stroke: #646cff;
+    stroke-width: 1;
+}
+
+.planet-guide {
+    stroke: rgba(255, 255, 255, 0.1);
+    stroke-width: 1;
+}
+
+.planet-marker-bg {
+    fill: #1a1a1a;
+    stroke: rgba(100, 108, 255, 0.5);
+    stroke-width: 1;
+}
+
+.planet-label {
+    fill: #fff;
+    font-size: 10px;
+    font-weight: bold;
+    pointer-events: none;
+}
+
+.aspect-line {
+    stroke-width: 1.5;
+    opacity: 0.6;
+}
+
+.aspect-conjunction {
+    stroke: #ffd700;
+    opacity: 0.8;
+}
+
+/* Gold */
+.aspect-opposition {
+    stroke: #ff4d4d;
+}
+
+/* Red */
+.aspect-square {
+    stroke: #ff4d4d;
+}
+
+/* Red */
+.aspect-trine {
+    stroke: #4dff4d;
+}
+
+/* Green */
+.aspect-sextile {
+    stroke: #4dff4d;
+    opacity: 0.4;
+}
+
+/* Green */
+
+/* Fire: Aries, Leo, Sag */
+.sign-0,
+.sign-4,
+.sign-8 {
+    stroke: rgba(255, 100, 100, 0.4);
+}
+
+/* Earth: Taurus, Virgo, Cap */
+.sign-1,
+.sign-5,
+.sign-9 {
+    stroke: rgba(100, 255, 100, 0.4);
+}
+
+/* Air: Gemini, Libra, Aquarius */
+.sign-2,
+.sign-6,
+.sign-10 {
+    stroke: rgba(255, 255, 100, 0.4);
+}
+
+/* Water: Cancer, Scorpio, Pisces */
+.sign-3,
+.sign-7,
+.sign-11 {
+    stroke: rgba(100, 100, 255, 0.4);
+}

@@ -1,0 +1,18 @@
+.tooltip {
+    position: fixed;
+    pointer-events: none;
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(139, 92, 246, 0.5);
+    color: white;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    white-space: pre-wrap;
+    max-width: 200px;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    transform: translate(-50%, -100%);
+    margin-top: -12px;
+}

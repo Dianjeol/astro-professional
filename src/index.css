@@ -1,0 +1,251 @@
+/* ============================================
+   DESIGN SYSTEM - Astrology App
+   ============================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* --- CSS Variables (Cosmic Dark Theme) --- */
+:root {
+  /* Colors */
+  --color-bg-primary: #0a0a1a;
+  --color-bg-secondary: #12122a;
+  --color-bg-card: rgba(255, 255, 255, 0.03);
+  --color-border: rgba(255, 255, 255, 0.08);
+
+  --color-text-primary: rgba(255, 255, 255, 0.92);
+  --color-text-secondary: rgba(255, 255, 255, 0.6);
+  --color-text-muted: rgba(255, 255, 255, 0.4);
+
+  --color-accent: #8b5cf6;
+  --color-accent-glow: rgba(139, 92, 246, 0.3);
+  --color-accent-secondary: #06b6d4;
+  /* Surface Aliases */
+  --color-surface: var(--color-bg-secondary);
+  --color-surface-elevated: var(--color-bg-card);
+  --color-surface-hover: rgba(255, 255, 255, 0.05);
+
+  /* Aspect Colors */
+  --color-aspect-conjunction: #fbbf24;
+  --color-aspect-trine: #34d399;
+  --color-aspect-sextile: #22d3ee;
+  --color-aspect-square: #f87171;
+  --color-aspect-opposition: #fb7185;
+
+  /* Typography */
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 2rem;
+  --font-size-4xl: 2.5rem;
+
+  /* Spacing (8px grid) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-glow: 0 0 40px var(--color-accent-glow);
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+
+  /* Legacy compatibility */
+  font-family: var(--font-family);
+  line-height: 1.6;
+  font-weight: 400;
+  color-scheme: dark;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[data-theme="light"] {
+  /* Colors - Parchment/Traditional */
+  --color-bg-primary: #fdfbf7;
+  --color-bg-secondary: #f3efe6;
+  --color-bg-card: rgba(255, 255, 255, 0.6);
+  --color-border: rgba(87, 83, 78, 0.15);
+
+  --color-text-primary: #292524;
+  --color-text-secondary: #57534e;
+  --color-text-muted: #a8a29e;
+
+  /* Accent - Amber/Rust */
+  --color-accent: #b45309;
+  --color-accent-glow: rgba(180, 83, 9, 0.2);
+  --color-accent-secondary: #0891b2;
+
+  /* Adjust shadows */
+  --shadow-glow: 0 0 40px var(--color-accent-glow);
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.08);
+
+  /* Surface Aliases */
+  --color-surface: #ffffff;
+  --color-surface-elevated: #f3efe6;
+  --color-surface-hover: rgba(0, 0, 0, 0.03);
+
+  color-scheme: light;
+}
+
+/* --- Base Reset --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--color-bg-primary);
+  /* Subtle texture/gradient overlay that works for both themes */
+  background-image:
+    radial-gradient(circle at 50% 0%, var(--color-accent-glow), transparent 60%);
+  transition: background-color var(--transition-slow), color var(--transition-slow);
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Typography --- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--color-text-primary);
+}
+
+h1 {
+  font-size: var(--font-size-4xl);
+}
+
+h2 {
+  font-size: var(--font-size-2xl);
+}
+
+h3 {
+  font-size: var(--font-size-xl);
+}
+
+p {
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+
+/* --- Links --- */
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-accent-secondary);
+}
+
+/* --- Buttons --- */
+button {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  padding: var(--space-3) var(--space-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-card);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+button:hover {
+  background: rgba(139, 92, 246, 0.1);
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-glow);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button.primary {
+  background: linear-gradient(135deg, var(--color-accent), #6366f1);
+  border: none;
+  color: white;
+}
+
+button.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--color-accent-glow);
+}
+
+/* --- Form Inputs --- */
+input,
+select {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  transition: border-color var(--transition-fast);
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-accent-glow);
+}
+
+input::placeholder {
+  color: var(--color-text-muted);
+}
+
+/* --- Utility Classes --- */
+.text-center {
+  text-align: center;
+}
+
+.text-muted {
+  color: var(--color-text-muted);
+}
+
+.mt-4 {
+  margin-top: var(--space-4);
+}
+
+.mb-4 {
+  margin-bottom: var(--space-4);
+}

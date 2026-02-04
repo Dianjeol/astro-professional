@@ -1,0 +1,221 @@
+.hellenistic-panel {
+    background: var(--color-surface);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.hellenistic-panel h3 {
+    color: var(--color-text);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+/* Sect Status */
+.sect-status {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.chart-ruler-section {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: var(--color-surface-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    text-align: left;
+}
+
+.chart-ruler-section h3 {
+    color: var(--color-accent);
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    border-bottom: none;
+}
+
+.sect-badge {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.sect-badge.day {
+    background: linear-gradient(135deg, #fef3c7, #fcd34d);
+    color: #92400e;
+}
+
+.sect-badge.night {
+    background: linear-gradient(135deg, #1e293b, #334155);
+    color: #e2e8f0;
+    border: 1px solid #475569;
+}
+
+/* Dignities Table */
+.dignities-table {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.dignities-header {
+    display: grid;
+    grid-template-columns: 1.5fr 1.5fr 1fr 1fr 1fr;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-secondary);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.dignity-row {
+    display: grid;
+    grid-template-columns: 1.5fr 1.5fr 1fr 1fr 1fr;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    background: var(--color-surface-elevated);
+    transition: background 0.2s;
+}
+
+.dignity-row:hover {
+    background: var(--color-surface-hover);
+}
+
+.planet-name {
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.planet-sign {
+    color: var(--color-text-secondary);
+}
+
+.retrograde {
+    color: var(--color-error);
+    margin-left: 0.25rem;
+    font-size: 0.85em;
+}
+
+.dignity-type {
+    font-weight: 600;
+}
+
+.sign-ruler {
+    color: var(--color-text-secondary);
+    font-size: 0.9em;
+}
+
+/* Lots Grid */
+.lots-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.lot-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.lot-card.fortune {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.2));
+    border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.lot-card.spirit {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(139, 92, 246, 0.2));
+    border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.lot-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.lot-name {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--color-text);
+    margin-bottom: 0.25rem;
+}
+
+.lot-position {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+}
+
+/* House Rulers */
+.house-rulers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.house-ruler-card {
+    background: var(--color-surface-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.house-ruler-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border-color: var(--color-accent);
+}
+
+.house-number {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    text-transform: uppercase;
+}
+
+.house-sign {
+    font-size: 0.85rem;
+    color: var(--color-text);
+    font-weight: 500;
+}
+
+.house-ruler-name {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .house-rulers-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.dignities-header,
+.dignity-row {
+    grid-template-columns: 1fr 1fr;
+}
+
+.dignities-header span:nth-child(4),
+.dignity-row span:nth-child(4) {
+    display: none;
+}
+
+.lots-grid {
+    grid-template-columns: 1fr;
+}

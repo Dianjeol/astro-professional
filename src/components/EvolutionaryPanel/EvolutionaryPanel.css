@@ -1,0 +1,188 @@
+.evolutionary-panel {
+    background: var(--color-surface);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.evolutionary-panel h3 {
+    color: var(--color-text);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+/* Lunar Nodes */
+.nodes-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.node-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.node-card.north {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(139, 92, 246, 0.2));
+    border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.node-card.south {
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(236, 72, 153, 0.2));
+    border: 1px solid rgba(236, 72, 153, 0.3);
+}
+
+.node-icon {
+    font-size: 2rem;
+}
+
+.node-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.node-name {
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.node-position {
+    font-size: 0.95rem;
+}
+
+.node-meaning {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    font-style: italic;
+}
+
+/* Pluto Section */
+.pluto-section {
+    margin-bottom: 1.5rem;
+}
+
+.pluto-card {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
+    border: 1px solid rgba(139, 92, 246, 0.4);
+    border-radius: 12px;
+    padding: 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pluto-main {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.planet-symbol {
+    font-size: 2.5rem;
+    color: #a78bfa;
+}
+
+.pluto-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.pluto-info .label {
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.pluto-info .position {
+    font-size: 1.1rem;
+}
+
+.rx {
+    color: var(--color-error);
+    margin-left: 0.25rem;
+    font-size: 0.85em;
+}
+
+.polarity-point {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.polarity-point .label {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+}
+
+.polarity-point .position {
+    font-weight: 600;
+    color: #a78bfa;
+}
+
+.polarity-point .meaning {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+}
+
+/* Outer Planets Grid */
+.outer-planets-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+}
+
+.outer-planet-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    background: var(--color-surface-elevated);
+    border-radius: 8px;
+    text-align: center;
+    gap: 0.25rem;
+}
+
+.outer-planet-card .planet-name {
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.outer-planet-card .planet-sign {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+}
+
+.outer-planet-card .house-label {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .nodes-section {
+        grid-template-columns: 1fr;
+    }
+
+    .pluto-card {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .polarity-point {
+        text-align: center;
+    }
+
+    .outer-planets-grid {
+        grid-template-columns: 1fr;
+    }
+}
